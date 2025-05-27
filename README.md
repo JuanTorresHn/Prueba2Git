@@ -1,4 +1,2 @@
-# Prueba2Git
+# Prueba de rama 1
 Aprendiento a usar Git
-# Editando archivo readme
-Cambio realizado por JCT

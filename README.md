@@ -1,4 +1,3 @@
-# Prueba2Git
-Aprendiento a usar Git
-# Editando archivo readme
-Cambio realizado por JCT
+# segunda rama
+Esta es la segunda rama de cambios
+manteniendo la rama principal sin cambios

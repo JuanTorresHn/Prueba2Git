@@ -1,0 +1,634 @@
+---
+title: "Laboratorio Cero / Juan Carlos Torres"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  word_document: default
+---
+
+1 Tipos de datos en R
+1.1 Numéricos
+En R los datos de tipo numérico se identifican como numeric o double:
+
+```{r}
+numero <- 34.80
+```
+
+```{r}
+trabnumero <- 25.30
+```
+
+Podemos consultar el tipo de dato a través de la función class():
+```{r}
+
+class(numero)
+```
+
+```{r}
+class(trabnumero)
+```
+
+class
+
+Vamos a crear un vector de números decimales (numeric o double):
+
+```{r}
+
+vector_numeros <- c(10.2, 20.5, 30.8)
+```
+
+```{r}
+vector_trabnum <- c(2, 4, 6, 8, 10)
+```
+
+```{r}
+class(vector_trabnum)
+```
+
+```{r}
+vector_numeros
+```
+
+```{r}
+vector_trabnum
+```
+
+1.2 Enteros
+Los enteros en R se tipifican como integer:
+```{r}
+enteros1 <- 5
+```
+
+```{r}
+enterostrab <- 10.2
+```
+
+```{r}
+enterostrab <- 10L
+```
+
+```{r}
+class(enterostrab)
+```
+```{r}
+class(enteros1)
+```
+
+Todos los números en R (enteros o decimales) se tipifican como numeric, sin embargo, podemos forzar a R para que entienda un entero como tal:
+
+```{r}
+
+enteros2 <- 5L
+```
+
+
+
+```{r}
+class(enteros2)
+```
+
+
+Puedo crear un vector de enteros:
+```{r}
+vector_enteros <- c(1L, 2L, 3L)
+```
+
+```{r}
+
+class(vector_enteros)
+```
+
+1.3 Caracteres (texto)
+Los caracteres representan variables cualitativas, en R todo texto debe estar escrito entre comillas ("" o ’’):
+
+```{r}
+texto <- "universidad"
+```
+
+
+```{r}
+textotrab <- "unitec"
+```
+
+```{r}
+class(textotrab)
+```
+
+
+```{r}
+class(texto)
+```
+
+
+Podemos crear un vector de caracteres:
+```{r}
+vector_texto <- c("a", "b", "c")
+```
+
+
+```{r}
+class(vector_texto)
+```
+
+1.4 Factores
+Los factores representan variables cualitativas ordinales y se pueden crear dentro de R con la función factor():
+
+```{r}
+vector_mes_malo <- factor(c("enero", "febrero", "marzo", "abril", "enero"))
+class(vector_mes_malo)
+```
+
+```{r}
+vector_likert <-factor(c("muy malo", "malo", "bueno", "muy bueno", "excelente"))
+class(vector_likert)
+```
+```{r}
+levels(vector_likert)
+```
+```{r}
+as.integer(vector_likert)
+```
+
+
+
+
+```{r}
+vector
+
+
+#Podemos solicitar a R los niveles del factor a través de la función #levels():
+#```{r}
+#levels(vector_mes_malo)
+#```
+
+
+#Podemos controlar el orden de los niveles en la función factor() editando #el argumento levels:
+
+#```{r}
+
+vector_mes_bueno <- factor(c("enero", "febrero", "marzo", "abril", "enero"),
+                           levels = c("enero", "febrero", "marzo", "abril"))
+```
+
+
+```{r}
+levels(vector_mes_bueno)
+```
+
+
+1.5 Lógicos
+En R los datos lógicos representan TRUE o FALSE:
+```{r}
+
+logico <- TRUE
+```
+
+```{r}
+class(logico)
+```
+
+
+
+
+
+## [1] "logical"
+Podemos crear un vector de lógicos:
+```{r}
+vector_logicos <- c(TRUE, FALSE, TRUE, FALSE)
+```
+
+```{r}
+class(vector_logicos)
+```
+
+
+
+```{r}
+vector_trablogico <- c(TRUE, FALSE, TRUE, FALSE)
+```
+
+```{r}
+class(vector_trablogico)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2 Valores ausentes
+
+Un vecto puede incluir valores ausentes:
+```{r}
+vector_ausente <- c(34.6, NA, 56.9)
+```
+
+
+```{r}
+
+class(vector_ausente)
+```
+
+
+3 Operadores
+3.1 Aritméticos
+3.1.1 Suma
+
+```{r}
+vector_numeros <- c(3, 5, 10)
+2 + vector_numeros
+```
+
+
+Podemos operar dos vectores de la misma longitud:
+```{r}
+vector1 <- c(1, 3, 5)
+vector2 <- c(10, 20, 30)
+```
+
+```{r}
+vector1 + vector2
+```
+
+
+Podemos operar dos vectores de diferente longitud:
+
+```{r}
+vector3 <- c(10, 20)
+vector4 <- c(10, 20, 30)
+vector3 + vector4
+```
+
+3.1.2 Potencia
+```{r}
+2^2
+```
+
+
+3.2 Relacionales
+
+3.2.1 Igualdad
+
+En R la igualdad se denota con doble símbolo igual (==):
+```{r}
+50 == 40
+```
+
+Podemos operar con la igualdad en vectores:
+```{r}
+vector_ejemplo <- c(40, 20, 2)
+2 == vector_ejemplo
+```
+
+3.2.2 Diferencia
+La diferencia en R se denota con un signo de exclamación de cierre y el igual (!=):
+
+```{r}
+3 != 3
+```
+
+
+
+Tambien es posible operar de manera relacional con caracteres:
+```{r}
+texto <- c("A", "a", "b")
+"a" != texto
+```
+
+
+3.2.3 Pertece a o está dentro de
+En R podemos denotar el “pertene a” con %in%:
+```{r}
+numeros2 <- c(10, 20, 30, 40)
+```
+
+
+```{r}
+30 %in% numeros2
+```
+
+Podemos operar sobre vectores de texto:
+```{r}
+
+texto2 <- c("a", "b", "c", "A")
+"A" %in% texto2
+```
+
+3.2.4 Mayor o igual
+En R el mayor o igual se denota con >=:
+
+```{r}
+ejemplo <- c(30, 40, 50, 10)
+ejemplo >= 20
+```
+
+3.3.2 Disyunción (o)
+
+```{r}
+ejemplo2 <- c(1, 5, 10)
+```
+
+
+```{r}
+ejemplo2 > 10 | ejemplo2 < 5
+```
+
+3.3.3 Conjunción (y)
+
+```{r}
+frutas1 <- c(80.5, 90, 50.4, 30)
+frutas2 <- c(90, 30, 40, 20)
+```
+
+```{r}
+
+frutas1 > 80 | frutas2 > 80
+```
+
+Cargando datos de las bases de R
+
+
+
+```{r}
+data(iris)
+```
+
+```{r}
+iris
+```
+```{r}
+head(iris)
+```
+
+```{r}
+dim(iris)
+```
+
+
+```{r}
+ncol(iris)
+```
+
+
+```{r}
+nrow(iris)
+```
+
+
+```{r}
+names(iris)
+```
+
+
+```{r}
+colnames(iris)
+```
+
+
+```{r}
+str(iris)
+```
+
+
+```{r}
+str(iris)
+```
+
+```{r}
+summary(iris)
+```
+
+
+```{r}
+sd(iris$Sepal.Length)
+
+```
+
+
+```{r}
+quantile(iris$Sepal.Length)
+```
+
+apply sirve para calclar una estadística para múltiples columnas
+
+```{r}
+apply(iris[,1:4], 2, sd)  # "2" significa por columna 
+```
+aggregate nos sirve para calcular estadísticas por grupos
+
+```{r}
+aggregate(.~Species, iris, mean) 
+```
+
+
+```{r}
+table(iris$Species)
+```
+Manipulación de datos
+
+Subset de datos la primera parte indica las filas (rows) y la segunda los features
+
+```{r}
+
+iris[1:4, 1:2]
+```
+Ahora vamos a seleccionar todas las filas y las primeras 3 columnas
+
+```{r}
+
+iris[, 1:3]
+
+```
+
+
+Lectura de Base da Datos de Internet
+
+```{r}
+customer <- read.csv(file = "https://xiaoruizhu.github.io/Data-Mining-R/lecture/data/CustomerData.csv")
+
+```
+
+```{r}
+head(customer)
+```
+
+
+¿Cuántos valores nulos hay en el dataset?
+
+```{r}
+sum(is.na(customer))
+```
+¿cuántos valores faltantes hay por columna?
+
+#```{r}
+#Data.frame(num_missing=colSums(is.na(customer)))
+#```
+
+
+creación de dataframe en R
+         
+```{r}
+
+temp <- c(20.37, 18.56, 18.4, 21.96, 29.53, 28.16,
+          36.38, 36.62, 40.03, 27.59, 22.15, 19.85)
+humedad <- c(88, 86, 81, 79, 80, 78,
+             71, 69, 78, 82, 85, 83)
+```
+         
+```{r}
+
+precipitaciones <- c(72, 33.9, 37.5, 36.6, 31.0, 16.6,
+                     1.2, 6.8, 36.8, 30.8, 38.5, 22.7)
+```
+
+
+```{r}
+
+mes <- c("enero", "febrero", "marzo", "abril", "mayo", "junio",
+         "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre")
+
+```
+
+
+Para unir los datos puedes usar la función data.frame. En este ejemplo, vamos a almacenar el data frame en una variable llamada datos:
+```{r}
+datos <- data.frame(mes = mes, temperatura = temp, humedad = humedad,
+                    precipitaciones = precipitaciones)
+names(datos) # Nombres de las variables (columnas)
+
+```
+
+
+```{r}
+# Primeras filas de nuestro conjunto de datos
+head(datos)
+
+```
+
+
+#```{r}
+#glimpse(datos)
+#
+#```
+
+Pare realizar análisis con factores o variables categóricas debemos convertirlas a factores
+
+
+```{r}
+datos$mes <- as.factor(datos$mes)
+```
+
+
+#```{r}
+#glimpse(datos)
+#```
+
+
+```{r}
+table(datos$mes)
+
+```
+
+
+#```{r}
+#describe(datos)
+#
+#```
+Gráficos R Base
+
+```{r}
+hist(datos$temperatura)
+```
+
+
+```{r}
+hist(datos$humedad)
+
+```
+Gráficos GGPLOT
+
+#```{r}
+#histograma <- ggplot(datos, aes(x=humedad)) +
+#  ggtitle("Humedad") +
+#
+#  geom_histogram(color="#28324a", fill="#3c78d8")
+#  
+#histograma
+#```
+
+
+#Group_By
+
+
+#```{r}
+#
+#datos_1 <- datos %>%
+#  group_by(mes) %>%
+#  mutate(temperatura_media =mean(temperatura))
+#```
+
+```{r}
+data(mtcars)
+```
+
+
+
+```{r}
+head(mtcars)
+```
+
+```{r}
+df1<-mtcars
+```
+
+```{r}
+head(df1)
+```
+
+
+
+```{r}
+#write_csv(df1, "cars123.csv")
+
+```
+
+
+#```{r}
+#read.csv("cars123.csv")
+#```
+
+```{r}
+#install.packages("writexl")
+```
+
+#```{r}
+#library(writexl)
+
+#```
+
+
+
+#```{r}
+#
+# Luego escribimos el siguiente comando:
+#write_xlsx(df1,"cars1234.xlsx")
+#
+#```
+
+```{r}
+
+```
